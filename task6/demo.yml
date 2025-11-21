@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: old-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: old-nginx
+  template:
+    metadata:
+      labels:
+        app: old-nginx
+      annotations:
+        trivy-operator.aquasec.com/scan: "true"
+        trivy-operator.aquasec.com/skip-init-container: "true"
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.12
