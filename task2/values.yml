@@ -1,0 +1,15 @@
+loki:
+  enabled: true
+
+promtail:
+  enabled: true
+  extraArgs:
+    - "--client.url=http://loki:3100/loki/api/v1/push"
+
+grafana:
+  enabled: true
+  grafana.ini:
+    server:
+      root_url: "%(protocol)s://%(domain)s:%(http_port)s"
+  adminUser: admin
+  adminPassword: admin
