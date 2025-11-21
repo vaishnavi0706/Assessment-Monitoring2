@@ -1,0 +1,12 @@
+groups:
+  - name: Blackbox Alerts
+    rules:
+      - alert: SiteDown
+        expr: probe_success == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Endpoint down"
+          description: "{{ $labels.instance }} is unreachable."
+
